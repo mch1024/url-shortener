@@ -1,0 +1,15 @@
+version: '3.1'
+services:
+    redis:
+        image: 'redis:6.2.6'
+    api:
+        depends_on:
+            - redis
+        build:
+            dockerfile: Dockerfile
+            context: .
+        environment:
+            - REDIS_HOST=redis
+            - REDIS_PORT=6379
+            - REDIS_HOST_RO=redis
+            - REDIS_PORT_RO=6379
